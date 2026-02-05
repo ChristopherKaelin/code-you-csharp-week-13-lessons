@@ -1,0 +1,14 @@
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\bin\Debug\net10.0\unit-03.exe
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\bin\Debug\net10.0\unit-03.deps.json
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\bin\Debug\net10.0\unit-03.runtimeconfig.json
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\bin\Debug\net10.0\unit-03.dll
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\bin\Debug\net10.0\unit-03.pdb
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.GeneratedMSBuildEditorConfig.editorconfig
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.AssemblyInfoInputs.cache
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.AssemblyInfo.cs
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.csproj.CoreCompileInputs.cache
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.dll
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\refint\unit-03.dll
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.pdb
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.genruntimeconfig.cache
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\ref\unit-03.dll
