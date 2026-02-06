@@ -12,3 +12,4 @@ D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-1
 D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.pdb
 D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.genruntimeconfig.cache
 D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\ref\unit-03.dll
+D:\Documents\Development\Repositories\Code-KY\2025-CSharp\code-you-csharp-week-13-lessons\unit-03\obj\Debug\net10.0\unit-03.sourcelink.json
