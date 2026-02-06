@@ -1,0 +1,109 @@
+Console.WriteLine("\n================================");
+Console.WriteLine("Hello, World, to Week 13, Unit 2");
+Console.WriteLine("================================\n");
+
+// Example: Adding, removing, and iterating through a List<T>
+
+// Define the type T as string for this list
+List<string> books = new List<string>(); // T is string
+books.Add("Book A"); // Add a string to the list
+books.Add("Book B");
+books.Add("Book C");
+books.Remove("Book A"); // Remove a specific string from the list
+
+foreach (string book in books) // Iterate through the list
+{
+    Console.WriteLine(book);
+}
+
+HashSet<string> names = new HashSet<string>();
+names.Add("Haneul");
+names.Add("Magda");
+
+foreach (string name in names)
+{
+    Console.WriteLine(name);
+}
+
+HashSet<string> names1 = new HashSet<string>();
+names1.Add("Haneul");
+names1.Add("Magda");
+
+if (names1.Contains("Haneul"))
+{
+    Console.WriteLine("Haneul is in the collection.");
+}
+
+HashSet<string> names2 = new HashSet<string>();
+names2.Add("Haneul");
+names2.Add("Magda");
+names2.Add("Mia");
+names2.Add("Mia"); // Duplicate, won't be added
+
+foreach (string name in names2)
+{
+    Console.WriteLine(name);
+}
+
+HashSet<string> emailAddresses = new HashSet<string>();
+emailAddresses.Add("user1@example.com");
+emailAddresses.Add("user2@example.com");
+emailAddresses.Add("user1@example.com"); // Duplicate, won't be added
+
+foreach (string email in emailAddresses)
+{
+    Console.WriteLine(email);
+}
+
+var students = new Dictionary<int, string>
+{
+    { 101, "Ji-min Jo" },
+    { 102, "Catalina Blaga" }
+};
+students.Add(103, "Milan Golob"); // Add a new key-value pair
+
+foreach (var kvp in students)
+{
+    Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+}
+
+var students1 = new Dictionary<int, string>
+{
+    { 101, "Ji-min Jo" },
+    { 102, "Catalina Blaga" }
+};
+
+var student = students[101];
+Console.WriteLine(student); // Outputs "Ji-min Jo"
+
+var students3 = new Dictionary<int, string>
+{
+    { 101, "Ji-min Jo" },
+    { 102, "Catalina Blaga" },
+    { 103, "Milan Golob" }
+};
+
+foreach (var kvp in students3)
+{
+    Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+}
+
+var phonebook = new Dictionary<string, string>
+{
+    { "Ji-min Jo", "312-555-0100" },
+    { "Catalina Blaga", "251-555-0101" }
+};
+Console.WriteLine(phonebook["Ji-min Jo"]); // Access Ji-min's phone number
+
+var productPrices = new Dictionary<int, decimal>
+{
+    { 201, 19.99m },
+    { 202, 29.99m }
+};
+
+Console.WriteLine($"Product 201 costs ${productPrices[201]}");
+
+
+Console.WriteLine("\n===========================");
+Console.WriteLine("End of Unit 2 demonstration");
+Console.WriteLine("===========================\n");
