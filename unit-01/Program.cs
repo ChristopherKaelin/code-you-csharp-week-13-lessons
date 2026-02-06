@@ -1,116 +1,117 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.Globalization;
+﻿using System.Globalization;
+using Data_M1;
 
-Console.WriteLine("\n================================");
-Console.WriteLine("Hello, World, to Week 13, Unit 1");
-Console.WriteLine("================================\n");
+class Program
+{
+    static void Main()
+    {
 
-//  handling date and time
-//  date, time, and time zones
-//  Implement date and time classes
-//  ===============================
-TimeOnly meetingTime = new TimeOnly(14, 30);        // 2:30 PM
-Console.WriteLine($"Meeting Time: {meetingTime}");  // Example console output: Meeting Time: 14:30
+        // Begin date and time operations
+        Console.WriteLine("\n=====================================");
+        Console.WriteLine("Hello, World, to Week 13, Unit 1");
+        Console.WriteLine("Demonstrate date and time operations:");
+        Console.WriteLine("================================\n");
 
-TimeSpan duration = new TimeSpan(2, 0, 0);          // 2 hours
-Console.WriteLine($"Event Duration: {duration}");   // Example console output: Event Duration: 02:00:00
+        // Prepare banking objects
+        string firstName = "Tim";
+        string lastName = "Shao";
+        BankCustomer customer1 = new StandardCustomer(firstName, lastName);
 
-DayOfWeek today = DateTime.Now.DayOfWeek;
-Console.WriteLine($"Today is: {today}");            // Example console output: Today is: [DayOfWeek]
+        BankAccount account1 = new BankAccount(customer1.CustomerId, 10000);
+        BankAccount account2 = new CheckingAccount(customer1.CustomerId, 500, 400);
+        BankAccount account3 = new SavingsAccount(customer1.CustomerId, 1000);
 
-//  DateTimeOffset, TimeZoneInfo, and TimeSpan
-//  ==========================================
-DateTimeOffset now = DateTimeOffset.Now; // Get the current date and time with offset
-Console.WriteLine($"Current date and time with offset: {now}");
+        BankAccount[] bankAccounts = new BankAccount[4];
+        bankAccounts[0] = account1;
+        bankAccounts[1] = account2;
+        bankAccounts[2] = account3;
 
-DateTimeOffset utcNow = DateTimeOffset.UtcNow; // Get the current UTC date and time with offset
-Console.WriteLine($"Current UTC date and time with offset: {utcNow}");
-
-DateTimeOffset futureDate = now.AddDays(10); // Add 10 days to the current date and time
-Console.WriteLine($"Date 10 days from now: {futureDate}");
-
-DateTimeOffset pastDate = now.AddHours(-5); // Subtract 5 hours from the current date and time
-Console.WriteLine($"Date 5 hours ago: {pastDate}");
-
-TimeSpan difference = futureDate - now; // Calculate the time difference between two dates
-Console.WriteLine($"Difference between now and future date: {difference}");
-
-DateTime utcNow2 = DateTime.UtcNow; // Get current UTC time
-Console.WriteLine($"UTC Now: {utcNow2}");
-
-DateTime cstNow = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(utcNow2, "Central Standard Time"); // Convert UTC to EST
-Console.WriteLine($"EST Now: {cstNow}");
-
-TimeZoneInfo localZone = TimeZoneInfo.Local; // Get local time zone
-Console.WriteLine($"Local Time Zone: {localZone.DisplayName}");
-
-DateTime localTime = TimeZoneInfo.ConvertTimeFromUtc(utcNow2, localZone); // Convert UTC to local time
-Console.WriteLine($"Local Time: {localTime}");
-
-TimeZoneInfo pstZone = TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"); // Find PST time zone
-DateTime pstTime = TimeZoneInfo.ConvertTime(utcNow2, pstZone); // Convert UTC to PST
-Console.WriteLine($"PST Time: {pstTime}");
-
-TimeSpan duration2 = new TimeSpan(2, 14, 18); // 2 hours, 14 minutes, 18 seconds
-Console.WriteLine($"Duration: {duration2}");
-
-TimeSpan fromDays = TimeSpan.FromDays(1.5); // Create TimeSpan from 1.5 days
-Console.WriteLine($"From Days: {fromDays}");
-
-TimeSpan fromHours = TimeSpan.FromHours(5.75); // Create TimeSpan from 5.75 hours
-Console.WriteLine($"From Hours: {fromHours}");
-
-TimeSpan difference2 = TimeSpan.FromHours(10) - TimeSpan.FromMinutes(30); // Subtract intervals
-Console.WriteLine($"Difference: {difference2}");
-
-TimeSpan multiplied = TimeSpan.FromMinutes(15) * 2; // Multiply interval
-Console.WriteLine($"Multiplied: {multiplied}");
-
-//  DayOfWeek, CultureInfo, Calendar, and CalendarWeekRule
-//  ======================================================
-DateTime today1 = DateTime.Now; // Get the current date and time
-DayOfWeek day = today1.DayOfWeek; // Retrieve the current day of the week
-Console.WriteLine("Today1 is: " + day);
-
-DateTime nextSunday = today1.AddDays(7 - (int)day); // Calculate the next Sunday
-Console.WriteLine("Next Sunday is on: " + nextSunday.ToShortDateString());
-
-bool isWeekend = day == DayOfWeek.Saturday || day == DayOfWeek.Sunday; // Check if today is a weekend
-Console.WriteLine("Is today a weekend? " + isWeekend);
-
-CultureInfo currentCulture = CultureInfo.CurrentCulture;
-CultureInfo currentUICulture = CultureInfo.CurrentUICulture;
-Console.WriteLine("Current Culture: " + currentCulture.Name);
-Console.WriteLine("Current UI Culture: " + currentUICulture.Name);
-
-// Set a new culture and UI culture
-CultureInfo newCulture = new CultureInfo("fr-FR");
-CultureInfo.CurrentCulture = newCulture;
-CultureInfo.CurrentUICulture = newCulture;
-Console.WriteLine("New Culture: " + CultureInfo.CurrentCulture.Name);
-Console.WriteLine("New UI Culture: " + CultureInfo.CurrentUICulture.Name);
-
-// Create a calendar instance
-Calendar calendar = CultureInfo.InvariantCulture.Calendar;
-
-// Get the number of days in February 2023
-int daysInMonth = calendar.GetDaysInMonth(2023, 2);
-Console.WriteLine("Days in February 2023: " + daysInMonth);
-
-// Determine the week of the year for December 31, 2023
-DateTime date = new DateTime(2023, 12, 31);
-CalendarWeekRule rule = CalendarWeekRule.FirstDay;
-DayOfWeek firstDayOfWeek = DayOfWeek.Sunday;
-int weekOfYear = calendar.GetWeekOfYear(date, rule, firstDayOfWeek);
-Console.WriteLine("Week of the year for December 31, 2023: " + weekOfYear);
-
-DateTime date1 = new DateTime(2023, 1, 5);
-CalendarWeekRule rule1 = CalendarWeekRule.FirstFourDayWeek;
-DayOfWeek firstDayOfWeek1 = DayOfWeek.Sunday;
-int weekOfYear1 = calendar.GetWeekOfYear(date1, rule1, firstDayOfWeek1);
-Console.WriteLine("Week of the year: " + weekOfYear1);
+        Transaction[] datedTransactions = new Transaction[5];
 
 
-Console.WriteLine("\n===========================");
-Console.WriteLine("End of Unit 1 demonstration");
-Console.WriteLine("===========================\n");
+        // TASK 1: Create and Manipulate Date and Time Values
+        // TASK 1: Step 1 - Get the current date and time, and extract date and time components
+        DateTime currentDateTime = DateTime.Now;
+        Console.WriteLine($"Current Date and Time: {currentDateTime}");
+
+        // TASK 1: Step 2 - Get the current day of the week and the current month and year
+        DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+        Console.WriteLine($"Current Date: {currentDate}");
+
+        TimeOnly currentTime = TimeOnly.FromDateTime(DateTime.Now);
+        Console.WriteLine($"Current Time: {currentTime}");
+
+        DayOfWeek currentDayOfWeek = DateTime.Now.DayOfWeek;
+        Console.WriteLine($"Current Day of the Week: {currentDayOfWeek}");
+
+        int currentMonth = DateTime.Now.Month;
+        int currentYear = DateTime.Now.Year;
+        Console.WriteLine($"Current Month: {currentMonth}, Current Year: {currentYear}");
+
+        // TASK 1: Step 3 - Add days to the current date and parse a date string
+        DateTime datePlusDays = DateTime.Now.AddDays(10);
+        Console.WriteLine($"Date Plus 10 Days: {datePlusDays}");
+
+        DateTime parsedDate = DateTime.Parse("2025-03-13");
+        Console.WriteLine($"Parsed Date: {parsedDate}");
+
+        // TASK 1: Step 4 - Format a date and get the current timezone offset
+        string formattedDate = DateTime.Now.ToString("yyyy-MM-dd");
+        Console.WriteLine($"Formatted Date: {formattedDate}");
+
+        TimeZoneInfo currentTimeZone = TimeZoneInfo.Local;
+        TimeSpan offsetFromUtc = currentTimeZone.GetUtcOffset(DateTime.Now);
+        Console.WriteLine($"Current Time Zone: {currentTimeZone.DisplayName}, Offset from UTC: {offsetFromUtc}");
+
+        // TASK 1: Step 5 - Convert the current time to UTC and display it
+        DateTime utcTime = DateTime.UtcNow;
+        Console.WriteLine($"UTC Time: {utcTime}");
+
+        // TASK 2: Calculate Date and Time Values for Bank Customer Transactions
+        // This task will display the output for customer transactions.
+
+        // TASK 2: Step 1 - Create a transaction for the current date and time
+        datedTransactions[0] = new Transaction(currentDate, currentTime, 100, account2.AccountNumber, account2.AccountNumber, "Withdraw", "Groceries");
+
+        // TASK 2: Step 2 - Create a transaction for yesterday at 1:15PM
+        datedTransactions[1] = new Transaction(currentDate.AddDays(-1), new TimeOnly(13, 15), 500, account2.AccountNumber, account2.AccountNumber, "Deposit", "ATM Deposit");
+
+        // TASK 2: Step 3 - Create transactions for the first three days of December 2025
+        datedTransactions[2] = new Transaction(new DateOnly(2025, 12, 1), new TimeOnly(10, 0), 200, account2.AccountNumber, account2.AccountNumber, "Deposit", "Salary");
+        datedTransactions[3] = new Transaction(new DateOnly(2025, 12, 2), new TimeOnly(14, 30), 150, account2.AccountNumber, account2.AccountNumber, "Withdraw", "Groceries");
+        datedTransactions[4] = new Transaction(new DateOnly(2025, 12, 3), new TimeOnly(9, 45), 300, account2.AccountNumber, account2.AccountNumber, "Deposit", "Freelance Work");
+
+        // TASK 2: Step 4 - Display the datedTransactions
+        Console.WriteLine("\nDated Transactions:");
+        foreach (Transaction transaction in datedTransactions)
+        {
+            Console.WriteLine(transaction.ReturnTransaction());
+        }
+
+        // TASK 3: Use Date Ranges to Simulate Transactions Programmatically
+        // TASK 3: Step 1 - Define a date range starting on October 12, 2025, and ending on December 20, 2025
+        DateOnly startDate = new DateOnly(2025, 10, 12);
+        DateOnly endDate = new DateOnly(2025, 12, 20);
+
+        // TASK 3: Step 2 - Generate transactions for the specified date range using the SimulateTransactions class
+        List<Transaction> transactions = new List<Transaction>(SimulateTransactions.SimulateTransactionsDateRange(startDate, endDate, account2, account3));
+
+        // TASK 3: Step 3 - Display the simulated transactions
+        Console.WriteLine("\nSimulated Transactions:");
+        foreach (Transaction transaction in transactions)
+        {
+            if (transaction != null)
+            {
+                Console.WriteLine(transaction.ReturnTransaction());
+            }
+        }
+
+        // TASK 3: Step 4 - Display the number of transactions processed
+        Console.WriteLine($"\nNumber of transactions processed: {transactions.Count}");
+
+
+        Console.WriteLine("\n===========================");
+        Console.WriteLine("End of Unit 1 demonstration");
+        Console.WriteLine("===========================\n");
+    }
+}
