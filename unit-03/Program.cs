@@ -1,167 +1,59 @@
-﻿Console.WriteLine("\n========================================");
-Console.WriteLine("Hello, World, to Week 13, Unit 3");
-Console.WriteLine("Implement enum, struct, and record types");
-Console.WriteLine("========================================\n");
+﻿using System;
 
-int seasonNum = 0;
-Season currSeason = (Season)seasonNum;
-Console.WriteLine($"Season #{seasonNum + 1} is {currSeason}");
+namespace BankApp;
 
-int dayNum = 2;
-DaysOfWeek day = (DaysOfWeek)dayNum;
-Console.WriteLine($"Week day #{dayNum + 1} is {day}");
-
-bool isValid = Enum.IsDefined(typeof(DaysOfWeek), 3);
-Console.WriteLine(isValid); // Outputs: True
-
-DaysOfWeek today = DaysOfWeek.Saturday;
-Console.WriteLine($"Is {today} a weekend day?  {today.IsWeekend()}");
-
-var order = new Order { OrderId = 123, Status = OrderStatus.Pending };
-order.UpdateStatus(OrderStatus.Shipped);
-
-var point = new PointA { X = 10, Y = 20 };
-Console.WriteLine(point);
-
-var point1 = new PointB(3, 4);
-var point2 = new PointB(7, 1);
-Console.WriteLine($"Distance between points: {point1.DistanceTo(point2)}");
-
-var person1 = new Person("Chris", "Kuo");
-var person2 = new Person("Chris", "Kuo");
-var person3 = new Person("CHRIS", "KUO");
-Console.WriteLine($"{person1} = {person2}? {person1 == person2}"); // Output: True
-Console.WriteLine($"{person1} = {person3}? {person1 == person3}"); // Output: True
-
-var dog = new Dog("Buddy", "Golden Retriever");
-Console.WriteLine(dog); // Output: Dog { Name = Buddy, Breed = Golden Retriever }
-
-var product1 = new Product("Laptop", 1200m);
-var product2 = new Product("Laptop", 1200m);
-var product3 = new Product("Tablet", 600m);
-
-Console.WriteLine($"Are product1 and product2 equal? {product1 == product2}");
-Console.WriteLine($"Are product1 and product3 equal? {product1 == product3}");
-
-
-Console.WriteLine("\n===========================");
-Console.WriteLine("End of Unit 3 demonstration");
-Console.WriteLine("===========================\n");
-
-enum Season
+class Program
 {
-    Spring,
-    Summer,
-    Autumn,
-    Winter
-}
-
-public enum DaysOfWeek
-{
-    Monday,
-    Tuesday,
-    Wednesday,
-    Thursday,
-    Friday,
-    Saturday,
-    Sunday
-}
-
-enum ErrorCode : ushort
-{
-    None = 0,
-    Unknown = 1,
-    ConnectionLost = 100,
-    OutlierReading = 200
-}
-
-public static class DaysOfWeekExtensions
-{
-    public static bool IsWeekend(this DaysOfWeek day)
+    static void Main(string[] args)
     {
-        return day == DaysOfWeek.Saturday || day == DaysOfWeek.Sunday;
+        Console.WriteLine("\n==============================================");
+        Console.WriteLine("Hello, World. Welcome to the Bank App Exercise");
+        Console.WriteLine("Implement enum, struct, and record types");
+        Console.WriteLine("==============================================\n");
+
+        // TASK 4: Display basic bank account information
+
+        // TASK 4: Step 1 - Create the AccountHolderDetails and BankAccountNumber for a new bank account.
+        AccountHolderDetails accountHolderDetails = new("Tim Shao", "123456789", "123 Elm Street");
+        BankAccountNumber accountNumber = new BankAccountNumber("000012345678");
+
+        // TASK 4: Step 2 - Create a Checking account with $500 using accountHolderDetails and accountNumber.
+        BankAccount bankAccount = new(accountNumber, BankAccountType.Checking, accountHolderDetails, 500.0);
+
+        // TASK 4: Step 3 - Display the account type description and account details.
+        Console.WriteLine("\nTASK 4: Display basic bank account information");
+        Console.WriteLine($"Account type description: {bankAccount.AccountType.GetDescription()}");
+        Console.WriteLine(bankAccount.DisplayAccountInfo());
+
+        // TASK 5: Demonstrate successful transactions
+        // TASK 5: Step 1 - Use the AddTransaction method for deposits and withdrawals.
+        bankAccount.AddTransaction(200m, "Deposit");
+        bankAccount.AddTransaction(-50m, "ATM Withdrawal");
+
+        // TASK 5: Step 2 - Display Account Info and Transactions
+        Console.WriteLine("\nTASK 5: Demonstrate using the Transaction record");
+        Console.WriteLine(bankAccount.DisplayAccountInfo());
+        bankAccount.DisplayTransactions();
+
+        // TASK 6: Demonstrate record comparison and the immutability of readonly structs
+        // TASK 6: Step 1 - Create a second AccountHolderDetails object with identical properties.
+        AccountHolderDetails customer2 = new("Tim Shao", "123456789", "123 Elm Street");
+
+        // TASK 6: Step 2 - Compare the two Customer objects using the == operator.
+        Console.WriteLine("\nTASK 6: Demonstrate record comparison and struct immutability");
+        Console.WriteLine($"Are customers equal? {accountHolderDetails == customer2}");
+
+        // TASK 6: Step 3 - create an instance of the readonly struct BankAccountNumber.
+        BankAccountNumber accountNumber2 = new BankAccountNumber("000123456789");
+        Console.WriteLine($"Original Account Number: {accountNumber2}");
+
+        // TASK 6: Step 4 - Attempt to change the Value property of the BankAccountNumber struct.
+        // accountNumber2.Value = "000987654321"; // Uncommenting this line will cause an error
+
+
+        Console.WriteLine("\n===============================");
+        Console.WriteLine("End of Unit 3 Bank App Exericse");
+        Console.WriteLine("===============================\n");
+
     }
 }
-
-enum OrderStatus
-{
-    Pending,
-    Shipped,
-    Delivered,
-    Cancelled
-}
-
-class Order
-{
-    public int OrderId { get; set; }
-    public OrderStatus Status { get; set; }
-
-    public void UpdateStatus(OrderStatus newStatus)
-    {
-        Status = newStatus;
-        Console.WriteLine($"Order {OrderId} status updated to {Status}");
-    }
-}
-
-public record Product(string Name, decimal Price)
-{
-    public override int GetHashCode() => HashCode.Combine(Name.ToLower(), Price);
-}
-
-public struct PointA
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-}
-
-public struct PointB
-{
-    public int X { get; }
-    public int Y { get; }
-
-    public PointB(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-
-    public double DistanceTo(PointB other)
-    {
-        int dx = X - other.X;
-        int dy = Y - other.Y;
-        return Math.Sqrt(dx * dx + dy * dy);
-    }
-}
-
-public record PointC(int X, int Y);
-
-public struct Rectangle
-{
-    private int width;
-    private int height;
-
-    public Rectangle(int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-    }
-
-    public int Area => width * height;
-}
-
-public readonly struct ImmutablePoint
-{
-    public int X { get; init; }
-    public int Y { get; init; }
-
-    public ImmutablePoint(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
-}
-
-public record Person(string FirstName, string LastName);
-
-public record Animal(string Name);
-public record Dog(string Name, string Breed) : Animal(Name);
